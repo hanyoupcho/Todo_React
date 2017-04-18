@@ -31,11 +31,11 @@ class TodoSearch extends React.Component {
     this.props.onSearch(showCompleted, searchText);
   }
 
-  
+
 
   render() {
     return (
-      <div>
+      <div className="container__header">
         <div>
           <input name="searchText" type="search" value={this.state.searchText} ref={(input) => {this.searchTextInput = input;}} onChange={this.handleInputChange} placeholder="Search todos"/>
         </div>
