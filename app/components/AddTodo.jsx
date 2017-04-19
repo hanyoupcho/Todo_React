@@ -1,7 +1,10 @@
 /*jshint esversion: 6 */
 import React from 'react';
+import {connect} from 'react-redux';
 
-class AddTodo extends React.Component {
+var actions = require('actions');
+
+export class AddTodo extends React.Component {
   constructor(props) {
     super(props);
     this.state = {todoText: ''};
@@ -16,11 +19,13 @@ class AddTodo extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
+    var {dispatch} = this.props;
     var todoText = this.state.todoText;
 
     if (todoText.length > 0) {
       this.setState({todoText: ''});
-      this.props.onAddTodo(todoText);
+      console.log(todoText);
+      dispatch(actions.addTodo(todoText));
     } else {
       this.todoTextInput.focus();
     }
@@ -37,4 +42,5 @@ class AddTodo extends React.Component {
   }
 }
 
-module.exports = AddTodo;
+
+export default connect()(AddTodo);

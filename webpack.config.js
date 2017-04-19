@@ -21,7 +21,15 @@ module.exports = {
     filename: './public/bundle.js'
   },
   resolve: {
-    modules: [path.resolve(__dirname, "./app/api"), path.resolve(__dirname, "./app/styles"), path.resolve(__dirname, "./app/components"), "node_modules"],
+    modules: [
+      path.resolve(__dirname, "./app/actions"),
+      path.resolve(__dirname, "./app/reducers"),
+      path.resolve(__dirname, "./app/store"),
+      path.resolve(__dirname, "./app/api"),
+      path.resolve(__dirname, "./app/styles"),
+      path.resolve(__dirname, "./app/components"),
+      "node_modules"
+    ],
     alias: {
       //Views
       //Modals

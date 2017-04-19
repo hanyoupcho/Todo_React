@@ -1,10 +1,14 @@
 /*jshint esversion: 6 */
 import React from 'react';
+import {connect} from 'react-redux';
+
 import Todo from 'Todo';
 
-class TodoList extends React.Component {
+import TodoAPI from 'TodoAPI';
+
+export class TodoList extends React.Component {
   render() {
-    var {todos} = this.props;
+    var {todos, showCompleted, searchText} = this.props;
 
     var renderTodos = () => {
       if (todos.length === 0) {
@@ -13,9 +17,9 @@ class TodoList extends React.Component {
         );
       }
 
-      return todos.map((todo) => {
+      return TodoAPI.filterTodos(todos, showCompleted, searchText).map((todo) => {
         return (
-          <Todo key={todo.id} {...todo} onToggle={this.props.onToggle}/>
+          <Todo key={todo.id} {...todo}/>
         );
       });
     };
@@ -28,4 +32,8 @@ class TodoList extends React.Component {
   }
 }
 
-module.exports = TodoList;
+export default connect(
+  (state) => {
+    return state;
+  }
+)(TodoList);
