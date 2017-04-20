@@ -1,5 +1,6 @@
 /*jshint esversion: 6 */
 import React from 'react';
+import {connect} from 'react-redux';
 import uuid from 'node-uuid';
 import moment from 'moment';
 
@@ -7,13 +8,27 @@ import TodoList from 'TodoList';
 import AddTodo from 'AddTodo';
 import TodoSearch from 'TodoSearch';
 
-class TodoApp extends React.Component {
-  // constructor(props) {
-  //   super(props);
-  // }
+import * as actions from 'actions';
+
+
+export class TodoApp extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.onLogout = this.onLogout.bind(this);
+  }
+  onLogout(event) {
+    event.preventDefault();
+    var {dispatch} = this.props;
+
+    dispatch(actions.startLogout());
+  }
   render() {
     return (
       <div>
+        <div className="page-actions">
+          <a href="#" onClick={this.onLogout}>Logout</a>
+        </div>
         <h1 className="page-title">Todo App</h1>
         <div className="row">
           <div className="column small-centered small-11 medium-6 large-5">
@@ -29,4 +44,4 @@ class TodoApp extends React.Component {
   }
 }
 
-module.exports = TodoApp;
+export default connect()(TodoApp);

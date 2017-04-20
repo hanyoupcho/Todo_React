@@ -2,13 +2,13 @@
 var $ = require('jQuery');
 
 module.exports = {
-  setTodos: function (todos) {
+  setTodos: function (todos) { //localStorage
     if ($.isArray(todos)) {
       localStorage.setItem('todos', JSON.stringify(todos));
       return todos;
     }
   },
-  getTodos: function () {
+  getTodos: function () { //localStrogae
     var stringTodos = localStorage.getItem('todos');
     var todos = [];
 
